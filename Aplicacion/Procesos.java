@@ -5,23 +5,6 @@ public class Procesos{
     private static double meta;
     private static double deudas;
 
-    public Procesos(){
-    }
-
-    public Procesos(int s){
-        saldo = s;
-    }
-
-    public Procesos(int s, int a, int m){
-        saldo = s;
-        ahorros = a;
-        meta = m;
-    }
-
-    public void retirar(double cantidad) {
-        saldo = saldo - cantidad;
-    } 
-    
     public static void nuevoSaldo(double n){
         saldo = saldo + n;
         System.out.println("Proceso realizado satisfactoriamente");
@@ -42,7 +25,17 @@ public class Procesos{
         }
     }
 
-    public static void pagarDeudas(double n){
+    public static void pagarDeudasAhorros(double n){
+        if(n <= ahorros){
+            deudas = deudas - n;
+            ahorros = ahorros - n;
+            System.out.println("Se ha pagado satisfactoriamente");
+        }else{
+            System.out.println("Ahorros insuficientes");
+        }
+    }
+
+    public static void pagarDeudasSaldo(double n){
         if(n <= saldo){
             deudas = deudas - n;
             saldo = saldo - n;
@@ -53,10 +46,10 @@ public class Procesos{
     }
 
     public static String toStringProcesos(){
-        return "Su saldo es de: " + "$" + Procesos.getSaldo() + "\n" +
-        "Sus ahorros son: " + "$" + Procesos.getAhorros() + "\n" +
-        "Su meta a cumplir es de: " + "$" + Procesos.getMeta() + "\n" +
-        "El valor de sus deudas es: " + "$" + Procesos.getDeudas();
+        return "Su saldo es de: " + "$" + (int)Procesos.getSaldo() + "\n" +
+        "Sus ahorros son: " + "$" + (int)Procesos.getAhorros() + "\n" +
+        "Su meta a cumplir es de: " + "$" + (int)Procesos.getMeta() + "\n" +
+        "El valor de sus deudas es: " + "$" + (int)Procesos.getDeudas();
     }
 
     public static double getSaldo(){
